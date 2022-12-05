@@ -81,6 +81,8 @@ test:
 #
 production:
   <<: *default
-  database: budget_tracker_production
-  username: budget_tracker
-  password: <%= ENV["BUDGET_TRACKER_DATABASE_PASSWORD"] %>
+  # COMMENT BACK IN IF NEEDED
+  # database: budget_tracker_production
+  # username: budget_tracker
+  # password: <%= ENV["BUDGET_TRACKER_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
