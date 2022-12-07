@@ -1,21 +1,15 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { fetchUser } from '../features/user/userSlice';
+import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom'
+
 
 const Home = () => {
-    const dispatch = useDispatch()
-    const user = useSelector(state => state.user)
+    const {userData } = useSelector(store => store.user)
 
-    useEffect(()=> {
-        dispatch(fetchUser()) 
-    },[])
-    console.log("user object" ,user.userData)
-    console.log("user object" ,user.userData)
-  if (!user.userData) {
-    return <h3>Please Login or Signup </h3>
+  if (!userData || userData.error) {
+    return <h2> Please {<NavLink to={'/login'}>Login</NavLink>} or {<NavLink to={'/signup'}>Signup</NavLink>} </h2>
   } else {
-    return <div>Home</div>
+    return <div>{userData.username}'s Home</div>
   }
 }
 
