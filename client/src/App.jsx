@@ -9,13 +9,13 @@ import Navbar from './Navbar';
 
 function App() {
   const dispatch = useDispatch()
-  const {userData } = useSelector(store => store.user)
+  const { loggedIn } = useSelector(store => store.user)
 
   useEffect(()=> {
     dispatch(fetchUser())
   },[dispatch])
 
-  const displayNav = (!userData || userData.error) ? null : <Navbar/>
+  const displayNav = (!loggedIn) ? null : <Navbar/>
 
   return (
     <div>

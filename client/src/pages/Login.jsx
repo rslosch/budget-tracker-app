@@ -31,8 +31,8 @@ const Login = () => {
             const errorLi = <h3 className='text-white m-2'> {str.toUpperCase()} </h3>
             setError(errorLi)
           } else {
-            dispatch(createUser(data))
             navigate('/')
+            dispatch(createUser(data))
           }
        })
   }

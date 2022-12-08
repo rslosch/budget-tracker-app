@@ -112,7 +112,7 @@ const Signup = () => {
       </form>
       </div>
       <div className='flex items-center justify-center bg-red-500 rounded m-4'>
-        <ul className='m-2'>
+        <ul>
           {errorsList}
         </ul>
     </div>

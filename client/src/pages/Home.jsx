@@ -1,12 +1,13 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import Login from './Login'
 
 import { RotatingLines } from 'react-loader-spinner'
 
 const Home = () => {
-    const {userData, loading } = useSelector(store => store.user)
-
+    const {userData, loading, loggedIn } = useSelector(store => store.user)
+    const navigate = useNavigate()
 
     if(loading) {
         return (
@@ -21,8 +22,11 @@ const Home = () => {
             </div>
         )
     }
-    else if (!userData || userData.error) {
-        return <h2> Please {<NavLink to={'/login'}>Login</NavLink>} or {<NavLink to={'/signup'}>Signup</NavLink>} </h2>
+    else if (!loggedIn || !userData) {
+        navigate('/login')
+        return (
+            <Login />
+        )
     } else {
         return (
         <div>

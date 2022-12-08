@@ -4,6 +4,7 @@ const initialState = {
     userData: null,
     loading: false,
     errorMessage: '',
+    loggedIn: false
 }
 
 //Generated, pending, fulfilled and rejected action types
@@ -21,9 +22,11 @@ const userSlice = createSlice({
     reducers: {
         createUser: (state, action) => {
             state.userData = action.payload
+            state.loggedIn = true
         },
         logoutUser: (state) => {
             state.userData = null
+            state.loggedIn = false
         },
     },
     extraReducers: builder => {
