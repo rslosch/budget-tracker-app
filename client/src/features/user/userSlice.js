@@ -22,6 +22,9 @@ const userSlice = createSlice({
         createUser: (state, action) => {
             state.userData = action.payload
         },
+        logoutUser: (state) => {
+            state.userData = null
+        },
     },
     extraReducers: builder => {
         builder.addCase(fetchUser.pending, state => {
@@ -40,4 +43,4 @@ const userSlice = createSlice({
 })
 
 export default userSlice.reducer
-export const { createUser } = userSlice.actions
+export const { createUser, logoutUser } = userSlice.actions
