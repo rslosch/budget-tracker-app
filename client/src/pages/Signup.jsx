@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { SignupIcon } from './icons';
-import { createUser } from './features/user/userSlice'
-import { useDispatch } from 'react-redux';
+import { SignupIcon } from '../icons';
+import { createUser } from '../features/user/userSlice'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 const Signup = () => {
