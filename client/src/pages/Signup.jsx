@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { SignupIcon } from '../icons';
 import { createUser } from '../features/user/userSlice'
 import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, NavLink } from 'react-router-dom'
 
 const Signup = () => {
   const [username, setUsername] = useState("")
@@ -36,7 +36,8 @@ const Signup = () => {
         setPassword('')
         setPasswordConfirmation('')
         const errorLis = user.errors.map(error => {
-          return <li key={error} className='py-1'>{error}</li>
+          let str = error.toString()
+          return <li key={error} className='text-white py-1'>{str.toUpperCase()}</li>
         })
         setErrorsList(errorLis)
       }
@@ -44,8 +45,8 @@ const Signup = () => {
   } 
 
   return (
-    <div className='bg-gradient-to-r from-teal-400 to-blue-500 h-screen flex justify-center items-center'>
-      <div className="max-w-sm mx-auto mt-12 bg-white shadow-md rounded px-8 pt-6 pb-8 w-1/2 ">
+    <div className='bg-gradient-to-r from-teal-400 to-blue-500 h-screen flex flex-col justify-center items-center'>
+      <div className="max-w-lg mx-auto mt-12 bg-white shadow-md rounded px-8 pt-6 pb-8 lg:w-1/3 w-1/2 ">
       <SignupIcon />
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
@@ -103,12 +104,18 @@ const Signup = () => {
           >
             Sign Up
           </button>
+          <NavLink to="/login" className="items-end text-sm hover:text-blue-500">
+            Have an account?
+            Login here
+          </NavLink>
         </div>
       </form>
+      </div>
+      <div className='flex items-center justify-center bg-red-500 rounded m-4'>
+        <ul className='m-2'>
+          {errorsList}
+        </ul>
     </div>
-    <ul className='className="list-reset mt-2 text-red-600"'>
-      {errorsList}
-    </ul>
   </div>
   )
 }

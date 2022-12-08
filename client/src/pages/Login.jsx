@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { createUser } from '../features/user/userSlice'
 
@@ -27,7 +27,8 @@ const Login = () => {
           if(!!data.error) {
             setUsername("")
             setPassword("")
-            const errorLi = <li className='py-1'> {data.error} </li>
+            let str = data.error
+            const errorLi = <h3 className='text-white m-2'> {str.toUpperCase()} </h3>
             setError(errorLi)
           } else {
             dispatch(createUser(data))
@@ -37,8 +38,8 @@ const Login = () => {
   }
 
   return (
-    <div className="bg-gradient-to-r from-teal-400 to-blue-500 h-screen flex justify-center items-center">
-    <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-1/2">
+    <div className="bg-gradient-to-r from-teal-400 to-blue-500 h-screen flex flex-col justify-center items-center">
+    <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-12 pt-6 pb-8 mb-4 lg:w-1/3 w-1/2">
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
           Username
@@ -60,7 +61,7 @@ const Login = () => {
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
           id="password"
           type="password"
-          placeholder="******************"
+          placeholder="**************"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
@@ -72,14 +73,14 @@ const Login = () => {
         >
           Log In
         </button>
-        <div className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
-          Forgot Password?
-        </div>
+        <NavLink to="/signup" className="items-end text-sm hover:text-blue-500">
+            Create an account here
+        </NavLink>
       </div>
     </form>
-    <ul className='className="list-reset mt-2 text-red-600"'>
+    <div className='flex items-center justify-center bg-red-500 rounded mt-2'>
       {error}
-    </ul>
+    </div>
   </div>
   )
 }
